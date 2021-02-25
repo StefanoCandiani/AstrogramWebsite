@@ -6,6 +6,7 @@ import axios from 'axios'
 function App () {
 
   const [imagesFetched, setImages] = useState([])
+  const [currImage, setImage] = useState([]);
 
   useEffect(() => {
     axios.get("https://images-api.nasa.gov/search?q=Nebula")
@@ -16,6 +17,17 @@ function App () {
       })
   }, []);
 
+  const getImagesFromJson = (href) => {
+    useEffect(() => {
+      axios.get(el.href)
+        .then(res => {
+          const currImg = res[0];
+          
+          setImage(currImg);
+        })
+      },[])
+  }
+
   console.log(imagesFetched);
 
     return (
@@ -25,8 +37,9 @@ function App () {
           {
             imagesFetched.map((el) => {
               return(
-                <li key={el.data.map((el) => { return el.nasa_id })}>
-                  <Card imageLink={el.href}/>
+                <li key={el.data.map((el) => { return el.nasa_id })}>            
+                  {console.log(el.href)}
+                  <Card imageLink={currImage}/>
                 </li>
               )
             })

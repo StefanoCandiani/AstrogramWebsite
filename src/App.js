@@ -1,44 +1,37 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import Card from './Insta Components/Card'
 import './App.css';
 import axios from 'axios'
 
 function App () {
 
-  const [imagesFetched, setImages] = useState([])
+  const [imagesFetched, setFetchImages] = useState([])
   const [currImage, setImage] = useState([]);
 
   useEffect(() => {
     axios.get("https://images-api.nasa.gov/search?q=Nebula")
       .then(res => {
-        const imgList = res.data.collection.items.slice(0,20);
+        const imgList = [].concat(res.data.collection.items.slice(0,20)); 
 
-        setImages(imgList);
+        setFetchImages(imgList);
       })
   }, []);
-
-  const getImagesFromJson = (href) => {
-    useEffect(() => {
-      axios.get(el.href)
-        .then(res => {
-          const currImg = res[0];
-          
-          setImage(currImg);
-        })
-      },[])
-  }
 
   console.log(imagesFetched);
 
     return (
-      <>
+      <Fragment>
         <h1> Testing </h1>
         <ul>
           {
-            imagesFetched.map((el) => {
+            imagesFetched.map((el) => { 
+                axios.get(el.href)
+                  .then(res => {
+                  setImage(res.data[0])
+                })                
               return(
                 <li key={el.data.map((el) => { return el.nasa_id })}>            
-                  {console.log(el.href)}
+                  
                   <Card imageLink={currImage}/>
                 </li>
               )
@@ -46,7 +39,7 @@ function App () {
           }
         </ul>
 
-      </>
+      </Fragment>
     );    
 
 }

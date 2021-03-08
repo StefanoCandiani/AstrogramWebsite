@@ -5,8 +5,7 @@ import axios from 'axios'
 
 function App () {
 
-  const [imagesFetched, setFetchImages] = useState([])
-  const [currImage, setImage] = useState([]);
+  const [imagesFetched, setFetchImages] = useState([]);
 
   useEffect(() => {
     axios.get("https://images-api.nasa.gov/search?q=Nebula")
@@ -17,22 +16,16 @@ function App () {
       })
   }, []);
 
-  console.log(imagesFetched);
 
     return (
       <Fragment>
-        <h1> Testing </h1>
         <ul>
           {
-            imagesFetched.map((el) => { 
-                axios.get(el.href)
-                  .then(res => {
-                  setImage(res.data[0])
-                })                
+            imagesFetched.map((el) => {    
               return(
                 <li key={el.data.map((el) => { return el.nasa_id })}>            
                   
-                  <Card imageLink={currImage}/>
+                  <Card imageLink={el.links[0].href}/>
                 </li>
               )
             })

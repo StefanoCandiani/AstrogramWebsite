@@ -8,11 +8,14 @@ function Card(props) {
     }
 
     return(
-        <div className="card" key="0">             
-            <div><img src={props.imageLink} alt="..."></img></div>
+        <div>
+            <div className="card h-100 w-100" key="0">             
+                <div><img src={props.imageLink} alt="..."></img></div>
+                
+            </div>
             <div className="button">
-                <button className="like" onClick={click}><img src="https://pngimg.com/uploads/like/like_PNG15.png" alt="likeImg" height="20" width="20"></img></button>
-                <p>{likes} likes</p>
+                    <button className="like" onClick={click}><img src="https://pngimg.com/uploads/like/like_PNG15.png" alt="likeImg" height="20" width="20"></img></button>
+                    <p>{likes} likes</p>
             </div>
         </div>
     )

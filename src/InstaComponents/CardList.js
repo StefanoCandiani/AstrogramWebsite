@@ -23,7 +23,7 @@ const CardList = () => {
 
     return (
       <Fragment>
-        <div className="searchBar">
+        <div className="searchBar tc ma2">
           <input type="text" onChange={changeItems}></input>
         </div>
         <ul>
@@ -31,7 +31,7 @@ const CardList = () => {
           { 
             imagesFetched.map((el) => {    
               return(
-                <li key={el.data.map((el) => { return el.nasa_id })}> 
+                <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-25 pa2 list"> 
                 {
                   el.links !== undefined ? <Card imageLink={el.links[0].href}/> : <h1>Couldn't Find a Result</h1>
                 }           

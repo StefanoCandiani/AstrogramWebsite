@@ -7,10 +7,16 @@ function Card(props) {
         setLikes((p) => { return p += 1 } )
     }
 
+    const cardStyle = {
+        width:"200px",
+        height:"200px",
+        objectFit:"cover"
+      }
+
     return(
         <div>
             <div className="card h-100 w-100" key="0">             
-                <div><img src={props.imageLink} alt="..."></img></div>
+                <div><img src={props.imageLink} alt="..." style={cardStyle}></img></div>
                 
             </div>
             <div className="button">

@@ -9,7 +9,7 @@ const CardList = () => {
   useEffect(() => {
     axios.get(`https://images-api.nasa.gov/search?q=${search}&media_type=image`)
       .then(res => {
-        const imgList = [].concat(res.data.collection.items.slice(0,21)); 
+        const imgList = [].concat(res.data.collection.items.slice(0,20)); 
 
         setFetchImages(imgList);
       })
@@ -26,12 +26,12 @@ const CardList = () => {
           <input type="text" className="searchBar"></input>
           <button onClick={changeItems}>Search</button>
         </div>
-        <ul className="tc">
+        <ul className="tc" style={{overflowY:"scroll", height:"600px", alignSelf:"self-end"}}>
 
           { 
             imagesFetched.map((el) => {    
               return(
-                <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-third pa2 list"> 
+                <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-25 pa2 list"> 
                 {
                   el.links !== undefined ? <Card imageLink={el.links[0].href}/> : null
                 }           

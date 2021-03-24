@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const CardList = () => {
     const [imagesFetched, setFetchImages] = useState([]);
-    const [search, setSearch] = useState("Nebula")
+    const [search, setSearch] = useState("Nebula");
 
   useEffect(() => {
     axios.get(`https://images-api.nasa.gov/search?q=${search}&media_type=image`)

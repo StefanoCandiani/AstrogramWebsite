@@ -3,8 +3,14 @@ import Card from './Card.js'
 import axios from 'axios'
 
 const CardList = () => {
+
+  // Variable storing the link of the 20 images and the initial query
+
     const [imagesFetched, setFetchImages] = useState([]);
     const [search, setSearch] = useState("Nebula");
+
+
+  // Using axios to get an API from NASA.gov (https://api.nasa.gov/)
 
   useEffect(() => {
     axios.get(`https://images-api.nasa.gov/search?q=${search}&media_type=image`)
@@ -15,10 +21,14 @@ const CardList = () => {
       })
   }, [search]);
 
+  // Change search element
+
   const changeItems = () => {
     let newSearch = document.querySelector(".searchBar").value;
     setSearch(newSearch);
   }
+
+  // Constructed visual element with 20 image cards and the daily image
 
     return (
       <Fragment>
@@ -26,7 +36,7 @@ const CardList = () => {
           <input type="text" className="searchBar"></input>
           <button onClick={changeItems}>Search</button>
         </div>
-        <ul className="tc" style={{overflowY:"scroll", height:"600px", alignSelf:"self-end"}}>
+        <ul className="imageList tc" style={{overflowY:"scroll", height:"600px", alignSelf:"self-end"}}>
 
           { 
             imagesFetched.map((el) => {    

@@ -1,9 +1,14 @@
 import React from 'react';
-import CardList from './InstaComponents/CardList.js';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Login } from './InstaComponents/Login';
+import CardList from './InstaComponents/CardList.js';
+import { Login, contactData } from './InstaComponents/Login';
+import DailyImage from './InstaComponents/DailyImage';
 
+console.log(contactData)
+ 
 function App () {
+
+  // Visual multi-page system with Login, CardList, and Individual Cards
 
   return(
     <Router>
@@ -11,9 +16,10 @@ function App () {
         <Login />
       </Route>
       <Route exact path="/mainpage">
+        <DailyImage />
         <CardList />
       </Route>
-      <Redirect />
+      <Redirect/>
     </Router>
   )
   

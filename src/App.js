@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Login from './InstaComponents/Login';
-
-console.log(contactData)
+import CardList from './InstaComponents/CardList';
  
 function App () {
 
@@ -13,10 +12,7 @@ function App () {
       <Route exact path="/">
         <Login />
       </Route>
-      <Route exact path="/mainpage">
-        <DailyImage />
         <CardList />
-      </Route>
       <Redirect to='/' />
     </Router>
   )

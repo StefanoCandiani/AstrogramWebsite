@@ -1,6 +1,9 @@
-import React, {useState, useEffect, Fragment} from 'react';
-import Card from './Card.js'
-import axios from 'axios'
+import React, {useState, useEffect } from 'react';
+import { Route, Switch, Link } from 'react-router-dom';
+import Card from './Card.js';
+import DailyImage from './DailyImage';
+import IndividualImage from './IndividualImage.js';
+import axios from 'axios';
 
 const CardList = () => {
 
@@ -31,7 +34,9 @@ const CardList = () => {
   // Constructed visual element with 20 image cards and the daily image
 
     return (
-      <Fragment>
+      <Switch>
+      <Route exact path="/mainpage">
+        <DailyImage />
         <div className="searchArea tc ma2">
           <input type="text" className="searchBar"></input>
           <button onClick={changeItems}>Search</button>
@@ -40,20 +45,29 @@ const CardList = () => {
 
           { 
             imagesFetched.map((el) => {    
+              let indivLink = `/individualImage/${el.data[0].nasa_id}`
               return(
-                <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-25 pa2 list"> 
-                {
-                  el.links !== undefined ? <Card imageLink={el.links[0].href}/> : null
-                }           
+                <Link to={indivLink}>
+                  <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-25 pa2 list"> 
+                  {
+
+                  // "Filter" out the cards that are not images
+                   
+                      el.links !== undefined ? <Card imageLink={el.links[0].href}/> : null
+
+                  }           
                   
-                </li>
+                  </li>
+                </Link>
               )
             })              
 
           }
         </ul>
 
-      </Fragment>
+      </Route>
+      <Route exact path="/individualImage/:_id" component={IndividualImage}/>
+      </Switch>
     );    
 
 }

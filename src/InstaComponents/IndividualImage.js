@@ -4,22 +4,29 @@ import axios from 'axios';
 const IndividualImage = (props) => {
 
     let id = props.match.params._id;
-    console.log(id);
     const [content, setContent] = useState("");
 
     useEffect(() => {
         axios.get(`https://images-api.nasa.gov/search?q=${id}`)
           .then(res => {
-              console.log(res)
+            console.log(res)
             setContent(res.data.collection);
           })
       },[id]);
 
-    return (
-        <div>
-            <h1>{content.items[0].data[0].title}</h1>
-        </div>
-    )
+
+    if(!content) {
+        return <h1>Loading...</h1>
+    } else {
+        return (
+            <div className="tc">
+                <h1 style={{color:"yellow"}}>{content.items[0].data[0].title}</h1>
+                <img src={content.items[0].links[0].href} alt={props.match.params._id}></img>
+            </div>
+        )        
+    }
+
+
 }
 
 export default IndividualImage;

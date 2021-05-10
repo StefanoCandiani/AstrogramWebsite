@@ -51,8 +51,9 @@ const CardList = () => {
             imagesFetched.map((el) => {    
               let indivLink = `/individualImage/${el.data[0].nasa_id}`
               return(
-                <Link to={indivLink}>
+
                   <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-25 pa2 list"> 
+                <Link to={indivLink}>
                   {
 
                   // "Filter" out the cards that are not images
@@ -60,9 +61,9 @@ const CardList = () => {
                       el.links !== undefined ? <Card imageLink={el.links[0].href}/> : null
 
                   }           
-                  
+                </Link>                  
                   </li>
-                </Link>
+
               )
             })              
 

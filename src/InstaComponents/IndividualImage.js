@@ -22,6 +22,7 @@ const IndividualImage = (props) => {
             <div className="tc">
                 <h1 style={{color:"yellow"}}>{content.items[0].data[0].title}</h1>
                 <img src={content.items[0].links[0].href} alt={props.match.params._id}></img>
+                <p style={{color:"yellow"}}>{content.items[0].data[0].description} Date of Publication: {content.items[0].data[0].date_created} </p>
             </div>
         )        
     }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import { Link } from 'react-router-dom';
 
 function DailyImage() {
 
@@ -48,7 +48,11 @@ function DailyImage() {
   return (
     <div className="tc">
         <h1 style={{color:"yellow"}}>NASA Picture of the Day: {name}</h1>
-        {media()}       
+
+        <Link to='/imageOfDay'>
+          {media()}
+        </Link>
+
     </div>
   );
 }

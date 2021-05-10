@@ -3,6 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import Card from './Card.js';
 import DailyImage from './DailyImage';
 import IndividualImage from './IndividualImage.js';
+import ExpandedDailyImage from './ExpandedDailyImage';
 import axios from 'axios';
 
 const CardList = () => {
@@ -67,6 +68,7 @@ const CardList = () => {
 
       </Route>
       <Route exact path="/individualImage/:_id" component={IndividualImage}/>
+      <Route exact path="/imageOfDay"component={ExpandedDailyImage} />
       </Switch>
     );    
 

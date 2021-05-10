@@ -1,5 +1,5 @@
 
-////// Expanded Individual image \\\\\\
+////// ExpandedDailyImage.js \\\\\\
 
 import React, { useState } from 'react';
 

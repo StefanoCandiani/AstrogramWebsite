@@ -1,3 +1,6 @@
+
+////// Login.js \\\\\\
+
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -14,6 +17,14 @@ class Login extends Component {
     }
 
     submit = (e) => {
+
+        this.setState({ 
+            fName: e.target[0].value,
+            lName: e.target[1].value,
+            eMail: e.target[2].value,
+            fcelo: e.target[3].value
+        })
+
         e.preventDefault()
         this.props.history.push('/mainpage')
     }

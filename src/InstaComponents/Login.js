@@ -30,6 +30,7 @@ class Login extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <form className="loginPage tc flex flex-column items-center" style={{color:"yellow"}} onSubmit={ this.submit }>
                 <h1>Welcome to ASTROGRAM</h1>

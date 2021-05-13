@@ -1,8 +1,11 @@
 
 ////// Login.js \\\\\\
 
+
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+
+import CardList from './CardList';
 
 class Login extends Component {
 
@@ -17,22 +20,23 @@ class Login extends Component {
     }
 
     submit = (e) => {
+        e.preventDefault();
 
         this.setState({ 
             fName: e.target[0].value,
             lName: e.target[1].value,
             eMail: e.target[2].value,
             fcelo: e.target[3].value
-        })
+        });
 
-        e.preventDefault()
+        <CardList props={this.fName, this.lName, this.eMail} />
         this.props.history.push('/mainpage')
     }
 
     render() {
-        console.log(this.state)
+
         return (
-            <form className="loginPage tc flex flex-column items-center" style={{color:"yellow"}} onSubmit={ this.submit }>
+            <form className="loginPage tc flex flex-column items-center" style={{color:"yellow"}} onSubmit={ this.submit } method="get">
                 <h1>Welcome to ASTROGRAM</h1>
                 <p className="w-50 pa2 mr1">Astrogram is a website made for people fascinated in astronomy,
                     it presents NASA images and captivates your passion for astronomy in 

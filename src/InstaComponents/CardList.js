@@ -9,8 +9,8 @@ import IndividualImage from './IndividualImage.js';
 import ExpandedDailyImage from './ExpandedDailyImage';
 import axios from 'axios';
 
-const CardList = () => {
-
+const CardList = (props) => {
+  
   // Variable storing the link of the 20 images and the initial query
 
     const [imagesFetched, setFetchImages] = useState([]);
@@ -25,6 +25,7 @@ const CardList = () => {
         const imgList = [].concat(res.data.collection.items.slice(0,20)); 
 
         setFetchImages(imgList);
+        console.log(props)
       })
   }, [search]);
 
@@ -38,7 +39,7 @@ const CardList = () => {
   // Constructed visual element with 20 image cards and the daily image
 
     return (
-      <Switch>
+    <Switch>
       <Route exact path="/mainpage">
         <DailyImage />
         <div className="searchArea tc ma2">
@@ -52,28 +53,26 @@ const CardList = () => {
               let indivLink = `/individualImage/${el.data[0].nasa_id}`
               return(
 
-                  <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-25 pa2 list"> 
-                <Link to={indivLink}>
-                  {
+                <li key={el.data.map((el) => { return el.nasa_id })} className="fl w-25 pa2 list"> 
+                  <Link to={indivLink}>
+                    {
 
-                  // "Filter" out the cards that are not images
+                    // "Filter" out the cards that are not images
                    
                       el.links !== undefined ? <Card imageLink={el.links[0].href}/> : null
 
-                  }           
-                </Link>                  
-                  </li>
-
+                    }           
+                  </Link>                  
+                </li>
               )
             })              
-
           }
         </ul>
 
       </Route>
       <Route exact path="/individualImage/:_id" component={IndividualImage}/>
       <Route exact path="/imageOfDay"component={ExpandedDailyImage} />
-      </Switch>
+    </Switch>
     );    
 
 }

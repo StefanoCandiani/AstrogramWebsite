@@ -12,7 +12,7 @@ function App () {
 
   return(
     <Router>
-      <Route exact path="/">
+      <Route exact path='/'>
         <Login />
       </Route>
         <CardList />

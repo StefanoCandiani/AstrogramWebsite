@@ -1,11 +1,9 @@
 
 ////// Login.js \\\\\\
 
-
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-
-import CardList from './CardList';
+// import CardList from './CardList';
 
 class Login extends Component {
 
@@ -19,6 +17,8 @@ class Login extends Component {
         }
     }
 
+    // Saves Login information and moves user to mainpage
+
     submit = (e) => {
         e.preventDefault();
 
@@ -29,7 +29,8 @@ class Login extends Component {
             fcelo: e.target[3].value
         });
 
-        <CardList props={this.fName, this.lName, this.eMail} />
+        // <CardList loginInfo={this.state} />
+
         this.props.history.push('/mainpage')
     }
 

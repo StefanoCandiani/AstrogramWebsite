@@ -27,7 +27,7 @@ const CardList = (props) => {
         setFetchImages(imgList);
         console.log(props)
       })
-  }, [search]);
+  }, [search, props]);
 
   // Change search element
 
